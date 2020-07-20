@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class FilmList {
 
-    private ArrayList<Film> filmArrayList = new ArrayList<Film>();
+    private ArrayList<Film> filmArrayList = new ArrayList<>();
 
-    public void addFilm(Film film){
-        filmArrayList.add(film);
+    public void addFilm(String title, String stramingPlatform){
+        filmArrayList.add(new Film(title,stramingPlatform));
     }
 
     public Film getRandomFilm(String platform){
@@ -16,5 +16,11 @@ public class FilmList {
             randomIndex = (int)(Math.random() * filmArrayList.size());
         }
         return filmArrayList.get(randomIndex);
+    }
+
+    public void showElements(){
+        for (Film film : filmArrayList){
+            System.out.println(film.getTitle() + " - " + film.getPlatform());
+        }
     }
 }

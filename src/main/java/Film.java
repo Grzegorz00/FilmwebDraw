@@ -1,21 +1,19 @@
 public class Film {
 
-    private String Title;
+    // uzyj tu lomboka
+
+    private String title;
     private String platform;
+
+    public Film(String title, String platform) {
+        this.title = title;
+        this.platform = platform;
+    }
 
     public String getPlatform() {
         return platform;
     }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-
     public String getTitle() {
-        return Title;
-    }
-
-    public void setTitle(String title) {
-        Title = title;
+        return title;
     }
 }
