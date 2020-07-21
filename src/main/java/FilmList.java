@@ -9,6 +9,7 @@ public class FilmList {
     }
 
     public Film getRandomFilm(String platform){
+        // słabo działa w polaczeniu z lista itd (widać to na przykladzie hbo)
         int randomIndex = (int)(Math.random() * filmArrayList.size());
 
         // in case the video is not available on the selected platform, loop searches for new random index

@@ -9,8 +9,7 @@ public class DataScrapper {
     //URLs and user's data
     private static final String loginUrl = "https://www.filmweb.pl/login";
     private static final String clientUrl = "https://www.filmweb.pl/user/Grzesie_002/wantToSee?page=";
-    private static final String login = "Grzesie_002";
-    private static final String password = "qaztgbwsx11";
+
 
     //XPATHs
     private static final String filmBoxXPATH = "//div[@class='filmPreview__card']";
@@ -24,6 +23,7 @@ public class DataScrapper {
 
     public static void main(String[] args) {
         new DataScrapper();
+
     }
 
     public DataScrapper(){
@@ -74,7 +74,7 @@ public class DataScrapper {
             e.printStackTrace();
         }
 
-        filmList.showElements();
+        System.out.println(filmList.getRandomFilm("Oglądaj na netlix").getTitle());
     }
 
     private void scrapFilmDataFromBox(List<HtmlElement> filmBoxList){
