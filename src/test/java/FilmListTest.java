@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class FilmListTest {
 
     @Test
@@ -9,8 +11,8 @@ public class FilmListTest {
         testList.addFilm("TestName1", "TestPlatform");
         testList.addFilm("TestName2", "Oglądaj na netflix");
         testList.addFilm("TestName3", "Oglądaj w hbo");
-        Assert.assertEquals("TestName1",testList.getRandomFilm("").getTitle());
-        Assert.assertEquals("TestName2",testList.getRandomFilm("Oglądaj na netflix").getTitle());
-        Assert.assertEquals("TestName3",testList.getRandomFilm("Oglądaj w hbo").getTitle());
+        assertEquals("TestName1",testList.getRandomFilm("").getTitle());
+        assertEquals("TestName2",testList.getRandomFilm("Oglądaj na netflix").getTitle());
+        assertEquals("TestName3",testList.getRandomFilm("Oglądaj w hbo").getTitle());
     }
 }
