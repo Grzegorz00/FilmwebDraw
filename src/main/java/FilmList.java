@@ -2,20 +2,31 @@ import java.util.ArrayList;
 
 public class FilmList {
 
-    private ArrayList<Film> filmArrayList = new ArrayList<>();
+    private ArrayList<Film> filmArrayList = new ArrayList();
+
+    //indexes of films in filmArrayList depending on streaming platform
+    private ArrayList<Integer> netflixList = new ArrayList<>();
+    private ArrayList<Integer> hboList = new ArrayList<>();
 
     public void addFilm(String title, String stramingPlatform){
         filmArrayList.add(new Film(title,stramingPlatform));
+
+        if(stramingPlatform.equals("Oglądaj na netflix"))
+            netflixList.add(filmArrayList.size() - 1);
+        if(stramingPlatform.equals("Oglądaj w hbo"))
+            hboList.add(filmArrayList.size() - 1);
     }
 
     public Film getRandomFilm(String platform){
-        // słabo działa w polaczeniu z lista itd (widać to na przykladzie hbo)
-        int randomIndex = (int)(Math.random() * filmArrayList.size());
-
-        // in case the video is not available on the selected platform, loop searches for new random index
-        while (!platform.equals(filmArrayList.get(randomIndex).getPlatform())){
-            randomIndex = (int)(Math.random() * filmArrayList.size());
+        int randomIndex;
+        if(platform.equals("Oglądaj na netflix")) {
+            randomIndex = (int) (Math.random() * netflixList.size());
+            return filmArrayList.get(netflixList.get(randomIndex));
+        }else if(platform.equals("Oglądaj w hbo")){
+            randomIndex = (int)(Math.random() * hboList.size());
+            return filmArrayList.get(hboList.get(randomIndex));
         }
+        randomIndex = (int) (Math.random() * filmArrayList.size());
         return filmArrayList.get(randomIndex);
     }
 
