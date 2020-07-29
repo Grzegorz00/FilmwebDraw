@@ -4,12 +4,11 @@ import com.gargoylesoftware.htmlunit.html.*;
 import java.io.IOException;
 import java.util.List;
 
-public class DataScrapper {
+public class DataScraper {
 
     //URLs and user's data
     private static final String loginUrl = "https://www.filmweb.pl/login";
     private static final String clientUrl = "https://www.filmweb.pl/user/Grzesie_002/wantToSee?page=";
-
 
     //XPATHs
     private static final String filmBoxXPATH = "//div[@class='filmPreview__card']";
@@ -21,37 +20,34 @@ public class DataScrapper {
     private HtmlPage filmwebPage;
     private FilmList filmList = new FilmList();
 
-    public static void main(String[] args) {
-        new DataScrapper();
-
-    }
-
-    public DataScrapper(){
+    public DataScraper(){
         setWebClient();
         loginToFilmweb();
         scrapFilmBoxes();
     }
 
-    private void setWebClient(){
+    public void setWebClient(){
         webClient.getOptions().setJavaScriptEnabled(false);
         webClient.getOptions().setCssEnabled(false);
         webClient.getOptions().setUseInsecureSSL(true);
     }
 
-    private void loginToFilmweb(){
+    public void loginToFilmweb(){
+
         try {
             filmwebPage = webClient.getPage(loginUrl);
             final HtmlForm loginForm = filmwebPage.getFormByName("form");
-            loginForm.getInputByName("j_username").setValueAttribute(login);
-            loginForm.getInputByName("j_password").setValueAttribute(password);
+            loginForm.getInputByName("j_username").setValueAttribute(TemporaryUserData.getLogin());
+            loginForm.getInputByName("j_password").setValueAttribute(TemporaryUserData.getPassword());
             HtmlButton loginButton = loginForm.getFirstByXPath("//button[@class='popupForm__button authButton authButton--submit materialForm__submit ']");
             loginButton.click();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    private void scrapFilmBoxes(){
+    public void scrapFilmBoxes(){
         try {
             char pageCounter = '1';
             boolean isFilmwebListEmpty = false;
@@ -74,10 +70,12 @@ public class DataScrapper {
             e.printStackTrace();
         }
 
-        System.out.println(filmList.getRandomFilm("Oglądaj na netlix").getTitle());
+        //testing results
+        filmList.showElements();
+        System.out.println("------\n" + filmList.getRandomFilm("Oglądaj na netflix").getTitle());
     }
 
-    private void scrapFilmDataFromBox(List<HtmlElement> filmBoxList){
+    public void scrapFilmDataFromBox(List<HtmlElement> filmBoxList){
         HtmlAnchor filmTitle;
         HtmlAnchor streamingPlatform;
 
