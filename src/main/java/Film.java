@@ -1,19 +1,13 @@
-public class Film {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-    // uzyj tu lomboka
+@Getter
+@Setter
+@AllArgsConstructor
+public class Film {
 
     private String title;
     private String platform;
 
-    public Film(String title, String platform) {
-        this.title = title;
-        this.platform = platform;
-    }
-
-    public String getPlatform() {
-        return platform;
-    }
-    public String getTitle() {
-        return title;
-    }
 }
