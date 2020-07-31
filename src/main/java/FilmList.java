@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class FilmList {
 
-    private ArrayList<Film> filmArrayList = new ArrayList();
+    private ArrayList<Film> filmArrayList = new ArrayList<>();
 
     //indexes of films in filmArrayList depending on streaming platform
     private ArrayList<Integer> netflixList = new ArrayList<>();
